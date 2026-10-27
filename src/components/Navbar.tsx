@@ -14,7 +14,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCertificates }) => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-
       const sections = ['about', 'projects', 'skills', 'experience', 'interests', 'education', 'contact'];
       const scrollPosition = window.scrollY + 140;
 
@@ -68,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCertificates }) => {
                 {PERSONAL_INFO.name}
               </span>
               <span className="text-[11px] font-semibold text-cyan-400 tracking-normal leading-tight whitespace-nowrap mt-0.5">
-                {PERSONAL_INFO.title}
+                Software Developer · GBOB Specialist
               </span>
             </div>
           </a>
@@ -79,9 +78,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCertificates }) => {
               <a
                 key={link.href}
                 href={link.href}
-                className={`text-xs uppercase tracking-wider font-bold transition-colors duration-150 relative py-1 ${
-                  activeSection === link.href.substring(1)
-                    ? 'text-cyan-400 after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-cyan-400 after:shadow-sm after:shadow-cyan-400'
+                className={`text-xs uppercase tracking-wider font-bold transition-colors ${
+                  activeSection === link.href.slice(1)
+                    ? 'text-cyan-300 font-extrabold'
                     : 'text-blue-200/80 hover:text-white'
                 }`}
               >
@@ -90,64 +89,62 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCertificates }) => {
             ))}
           </nav>
 
-          {/* Right Action buttons */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Right Action Buttons */}
+          <div className="hidden sm:flex items-center gap-2.5">
             {onOpenCertificates && (
               <button
                 type="button"
                 onClick={onOpenCertificates}
-                className="text-xs font-bold px-3 py-2 text-cyan-300 hover:text-white hover:bg-blue-900/50 rounded-lg transition-colors border border-blue-800/80"
+                className="px-3 py-1.5 text-xs font-bold text-cyan-300 bg-[#0c1836] hover:bg-blue-900/60 border border-blue-700/80 hover:border-cyan-400 rounded-lg transition-all shadow-xs"
               >
-                Certificates
+                Credentials (6)
               </button>
             )}
+
             <a
               href={`https://mail.google.com/mail/?view=cm&fs=1&to=${PERSONAL_INFO.email}&su=Portfolio%20Inquiry`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-bold bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-3.5 py-2 rounded-lg hover:from-blue-500 hover:to-cyan-500 transition-all shadow-md shadow-blue-500/25"
+              className="px-3.5 py-1.5 text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 rounded-lg shadow-sm shadow-blue-500/30 transition-all inline-flex items-center gap-1.5"
             >
               <Mail className="w-3.5 h-3.5" />
-              <span>Get in Touch</span>
+              <span>Contact</span>
+              <ArrowUpRight className="w-3 h-3 text-cyan-200" />
             </a>
           </div>
 
-          {/* Mobile hamburger menu */}
-          <div className="flex sm:hidden items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-blue-200 hover:text-white hover:bg-blue-900/50 rounded-lg focus-visible:outline-cyan-400"
-              aria-label="Toggle navigation menu"
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
+          {/* Mobile Menu Toggle Button */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 rounded-lg text-blue-200 hover:text-white hover:bg-blue-900/40 transition-colors"
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile dropdown panel */}
+      {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="sm:hidden border-b border-blue-900 bg-[#070d1e] px-4 pt-3 pb-6 space-y-3 shadow-2xl">
-          <nav className="flex flex-col space-y-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`px-3 py-2.5 rounded-lg text-sm font-bold transition-colors ${
-                  activeSection === link.href.substring(1)
-                    ? 'bg-blue-600 text-white font-extrabold shadow-sm'
-                    : 'text-blue-200 hover:bg-blue-900/50 hover:text-white'
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
+        <div className="md:hidden bg-[#070d1e] border-b border-blue-900/80 px-4 pt-2 pb-5 space-y-1 shadow-xl">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className={`block px-3 py-2 text-sm font-bold rounded-lg transition-colors ${
+                activeSection === link.href.slice(1)
+                  ? 'bg-blue-950 text-cyan-300 border border-blue-700/60'
+                  : 'text-blue-100 hover:bg-blue-900/30'
+              }`}
+            >
+              {link.label}
+            </a>
+          ))}
 
-          <div className="pt-3 border-t border-blue-900 flex flex-col gap-2">
+          <div className="pt-3 border-t border-blue-900/60 flex flex-col gap-2">
             {onOpenCertificates && (
               <button
                 type="button"
@@ -155,19 +152,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenCertificates }) => {
                   setMobileMenuOpen(false);
                   onOpenCertificates();
                 }}
-                className="w-full text-center py-2.5 px-3 text-sm font-bold border border-blue-700 rounded-lg text-cyan-300 hover:bg-blue-900/50"
+                className="w-full text-left px-3 py-2 text-xs font-bold text-cyan-300 bg-blue-950/80 border border-blue-700/60 rounded-lg"
               >
-                View Verified Certificates (6)
+                View 6 Verified Credentials
               </button>
             )}
+
             <a
               href={`https://mail.google.com/mail/?view=cm&fs=1&to=${PERSONAL_INFO.email}&su=Portfolio%20Inquiry`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 py-2.5 px-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-sm font-bold rounded-lg hover:from-blue-500 hover:to-cyan-500 shadow-md shadow-blue-500/25"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full text-center px-3 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-lg inline-flex items-center justify-center gap-1.5 shadow-md"
             >
-              <Mail className="w-4 h-4" />
-              <span>Contact Directly via Email</span>
+              <Mail className="w-3.5 h-3.5" />
+              <span>abrarsafoora161@gmail.com</span>
             </a>
           </div>
         </div>

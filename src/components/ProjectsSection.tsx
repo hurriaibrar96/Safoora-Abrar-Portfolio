@@ -6,12 +6,10 @@ import {
   ExternalLink,
   Boxes,
   ShoppingCart,
-  Smartphone,
   Navigation,
   CheckSquare,
   Box,
-  Layers,
-  Sparkles
+  Building
 } from 'lucide-react';
 import { Project, PROJECTS } from '../data/portfolioData';
 import { ProjectCardPreview } from './ProjectCardPreview';
@@ -30,12 +28,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
 
   const getProjectIcon = (id: string) => {
     switch (id) {
+      case 'superior-xr':
+        return <Building className="w-4 h-4 text-cyan-400" />;
       case '3d-model-showcase':
-        return <Boxes className="w-4 h-4 text-cyan-400" />;
+        return <Boxes className="w-4 h-4 text-violet-400" />;
       case 'freshcart':
         return <ShoppingCart className="w-4 h-4 text-emerald-400" />;
-      case 'superior-xr':
-        return <Smartphone className="w-4 h-4 text-sky-400" />;
       case 'campus-navigation':
         return <Navigation className="w-4 h-4 text-amber-400" />;
       case 'orbit-habit-tracker':
@@ -47,6 +45,14 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
 
   const getProjectSpecs = (id: string) => {
     switch (id) {
+      case 'superior-xr':
+        return {
+          architecture: 'SuperiorXR Solutions — Official Business Platform',
+          liveUrl: 'https://superiorxr-website-wt7g.vercel.app/',
+          frontend: 'React, Spatial UI Components, Responsive Design',
+          purpose: 'Explore the Business, Extended-Reality & Spatial Tools',
+          deployment: 'Production Vercel Cloud & Companion Android APK'
+        };
       case '3d-model-showcase':
         return {
           architecture: 'Client-Side WebGL 3D Canvas',
@@ -60,13 +66,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
           frontend: 'React 19, Context API, Tailwind CSS',
           backend: 'Node.js, Express REST endpoints',
           deployment: 'Vercel Deployment'
-        };
-      case 'superior-xr':
-        return {
-          architecture: 'Native Handheld XR Architecture',
-          runtime: 'Android APK / Spatial SDKs',
-          inputTracking: 'Touch Gesture 6DoF Anchoring',
-          optimization: 'Lightweight battery-conscious build'
         };
       case 'campus-navigation':
         return {
@@ -114,8 +113,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
               Featured Software Engineering Projects
             </h2>
-            <p className="mt-2 text-sm text-blue-200/80 max-w-2xl leading-relaxed">
-              Explore interactive visual simulations, production repositories, and live deployed web architectures below.
+            <p className="mt-2 text-sm text-blue-200/80 max-w-2xl leading-relaxed text-justify">
+              Explore SuperiorXR Solutions to explore the business, interactive 3D visual environments, full-stack commerce architectures, and production repositories below.
             </p>
           </div>
 
@@ -123,9 +122,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
           <div className="flex items-center gap-1.5 p-1.5 bg-[#0e1a38] rounded-xl border border-blue-800/80 shadow-md self-start md:self-auto shrink-0">
             {[
               { id: 'all', label: `All (${PROJECTS.length})` },
-              { id: 'ai', label: '3D & AI' },
-              { id: 'web', label: 'Web Apps' },
-              { id: 'mobile', label: 'Mobile & XR' }
+              { id: 'web', label: 'Web & Platforms' },
+              { id: 'ai', label: '3D Experiences' },
+              { id: 'mobile', label: 'XR & Mobile' }
             ].map((tab) => {
               const isActive = activeFilter === tab.id;
               return (
@@ -153,6 +152,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
               const isWide = index === 0 && activeFilter === 'all';
               const cardTab = activeTabPerCard[project.id] || 'preview';
               const specs = getProjectSpecs(project.id);
+              const isSuperiorXR = project.id === 'superior-xr';
 
               return (
                 <motion.article
@@ -163,7 +163,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                   exit={{ opacity: 0, scale: 0.97 }}
                   transition={{ duration: 0.3 }}
                   whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                  className={`relative bg-[#0d1836]/90 backdrop-blur-md rounded-2xl border border-blue-800/60 shadow-xl hover:border-cyan-400/80 hover:shadow-cyan-500/10 transition-all duration-300 flex flex-col justify-between overflow-hidden group ${
+                  className={`relative bg-[#0d1836]/90 backdrop-blur-md rounded-2xl border ${
+                    isSuperiorXR
+                      ? 'border-cyan-400/80 shadow-cyan-500/20'
+                      : 'border-blue-800/60'
+                  } shadow-xl hover:border-cyan-400 hover:shadow-cyan-500/10 transition-all duration-300 flex flex-col justify-between overflow-hidden group ${
                     isWide ? 'md:col-span-2' : ''
                   }`}
                 >
@@ -179,21 +183,26 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                     {/* URL Bar */}
                     <div className="flex-1 max-w-xs mx-auto px-3 py-0.5 rounded-md bg-[#0e1c40] border border-blue-700/50 text-[11px] font-mono text-cyan-300 truncate text-center shadow-inner">
                       {project.liveUrl ? (
-                        <span className="font-semibold">{project.liveUrl.replace('https://', '')}</span>
+                        <span className="font-semibold">{project.liveUrl.replace('https://', '').replace(/\/$/, '')}</span>
                       ) : (
                         <span className="text-blue-300">github.com/.../{project.id}</span>
                       )}
                     </div>
 
                     {/* Live status badge */}
-                    {project.liveUrl ? (
+                    {isSuperiorXR ? (
+                      <span className="inline-flex items-center gap-1 text-cyan-300 bg-cyan-950/90 border border-cyan-400/60 px-2 py-0.5 rounded-full font-bold text-[10px]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                        EXPLORE BUSINESS
+                      </span>
+                    ) : project.liveUrl ? (
                       <span className="inline-flex items-center gap-1 text-emerald-400 bg-emerald-950/80 border border-emerald-500/40 px-2 py-0.5 rounded-full font-bold text-[10px]">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                         LIVE
                       </span>
                     ) : (
                       <span className="text-[10px] text-cyan-300 font-mono font-bold bg-blue-950 px-2 py-0.5 rounded-full border border-blue-700">
-                        APK
+                        SOURCE
                       </span>
                     )}
                   </div>
@@ -223,7 +232,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                                 : 'text-blue-300 hover:text-white'
                             }`}
                           >
-                            Animation
+                            Preview
                           </button>
                           <button
                             type="button"
@@ -240,11 +249,18 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                       </div>
 
                       {/* Project Title */}
-                      <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight group-hover:text-cyan-300 transition-colors">
-                        {project.title}
-                      </h3>
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight group-hover:text-cyan-300 transition-colors">
+                          {project.title}
+                        </h3>
+                        {isSuperiorXR && (
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-blue-900/80 text-cyan-300 border border-cyan-400/50">
+                            Official Business
+                          </span>
+                        )}
+                      </div>
 
-                      {/* Interactive Related Animation Preview Inside the Card! */}
+                      {/* Interactive Related Animation Preview Inside the Card */}
                       {cardTab === 'preview' ? (
                         <div className="mt-4 mb-4">
                           <ProjectCardPreview projectId={project.id} />
@@ -257,14 +273,14 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                           {Object.entries(specs).map(([key, val]) => (
                             <div key={key} className="flex items-start justify-between gap-2 border-b border-blue-900/60 pb-1.5 last:border-b-0 last:pb-0">
                               <span className="text-blue-300 capitalize">{key}:</span>
-                              <span className="text-white font-semibold text-right">{val}</span>
+                              <span className="text-white font-semibold text-right break-all">{val}</span>
                             </div>
                           ))}
                         </div>
                       )}
 
-                      {/* Description */}
-                      <p className="text-sm text-blue-100/90 leading-relaxed font-normal">
+                      {/* Description with text-justify */}
+                      <p className="text-sm text-blue-100/90 leading-relaxed font-normal text-justify">
                         {project.description}
                       </p>
 
@@ -277,7 +293,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                           {project.highlights.slice(0, 3).map((h, i) => (
                             <li key={i} className="flex items-start gap-2">
                               <span className="text-cyan-400 font-bold select-none" aria-hidden="true">&bull;</span>
-                              <span>{h}</span>
+                              <span className="text-justify">{h}</span>
                             </li>
                           ))}
                         </ul>
@@ -298,7 +314,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                       </div>
                     </div>
 
-                    {/* External Actions in Blue */}
+                    {/* External Actions in Blue with secure rel attributes */}
                     <div className="mt-6 pt-4 border-t border-blue-900/60 flex flex-wrap items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
                         <a
@@ -322,7 +338,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
                             title={`Open live app for ${project.title}`}
                           >
                             <ExternalLink className="w-3.5 h-3.5" />
-                            <span>Live App</span>
+                            <span>{isSuperiorXR ? 'Explore the Business' : 'Live App'}</span>
                             <ArrowUpRight className="w-3 h-3 text-white" />
                           </a>
                         )}
@@ -343,32 +359,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onSelectProjec
               );
             })}
           </AnimatePresence>
-        </div>
-
-        {/* GitHub Banner in rich deep navy/sapphire */}
-        <div className="mt-10 p-6 rounded-2xl border border-blue-700/60 bg-gradient-to-r from-[#0d1a38] via-[#102454] to-[#0c1836] text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xl">
-          <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-xl bg-blue-600/30 text-cyan-300 flex items-center justify-center shrink-0 border border-blue-500/40 shadow-inner">
-              <Github className="w-6 h-6" />
-            </div>
-            <div>
-              <p className="text-sm font-bold text-white">
-                Explore More Repositories on GitHub
-              </p>
-              <p className="text-xs text-blue-200/90 mt-0.5">
-                Continuous code commits, Python AI scripts, and web development repositories.
-              </p>
-            </div>
-          </div>
-          <a
-            href="https://github.com/hurriaibrar96"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-950 bg-cyan-400 hover:bg-cyan-300 px-4 py-2.5 rounded-lg transition-all shadow-md shadow-cyan-400/20 shrink-0"
-          >
-            <span>github.com/hurriaibrar96</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-stone-950" />
-          </a>
         </div>
       </div>
     </section>

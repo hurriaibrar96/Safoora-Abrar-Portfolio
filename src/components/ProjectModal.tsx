@@ -10,6 +10,8 @@ interface ProjectModalProps {
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
   if (!project) return null;
 
+  const isSuperiorXR = project.id === 'superior-xr';
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#040814]/80 backdrop-blur-md"
@@ -21,9 +23,16 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-blue-800 bg-[#081024]">
           <div>
-            <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider block font-bold">
-              {project.type}
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-mono text-cyan-400 uppercase tracking-wider block font-bold">
+                {project.type}
+              </span>
+              {isSuperiorXR && (
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-400/50">
+                  Explore the Business
+                </span>
+              )}
+            </div>
             <h2 id="modal-project-title" className="text-xl sm:text-2xl font-black text-white mt-0.5">
               {project.title}
             </h2>
@@ -44,7 +53,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             <h3 className="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-2 font-bold">
               Overview &amp; Purpose
             </h3>
-            <p className="text-sm text-blue-100 leading-relaxed font-normal">
+            <p className="text-sm text-blue-100 leading-relaxed font-normal text-justify">
               {project.longDescription || project.description}
             </p>
           </div>
@@ -57,7 +66,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               {project.highlights.map((highlight, idx) => (
                 <li key={idx} className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-cyan-400 mt-0.5 shrink-0" />
-                  <span>{highlight}</span>
+                  <span className="text-justify">{highlight}</span>
                 </li>
               ))}
             </ul>
@@ -97,8 +106,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 rounded-lg transition-all shadow-md shadow-blue-500/25"
                 >
-                  <ExternalLink className="w-4 h-4" />
-                  <span>Open Live Application</span>
+                  <ExternalLink className="w-4 h-4 text-white" />
+                  <span>{isSuperiorXR ? 'Explore the Business (SuperiorXR Solutions)' : 'Visit Live Project'}</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-white" />
                 </a>
               )}
@@ -107,7 +116,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             <button
               type="button"
               onClick={onClose}
-              className="text-xs font-bold text-cyan-400 hover:text-white px-2 py-1"
+              className="text-xs font-semibold text-blue-300 hover:text-white px-3 py-1.5 rounded-lg hover:bg-blue-900/40 transition-colors"
             >
               Close
             </button>

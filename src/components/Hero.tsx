@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import {
   Mail,
   Copy,
@@ -10,12 +10,12 @@ import {
   Linkedin,
   ArrowUpRight,
   Sparkles,
-  Brain,
   Code2,
   Server,
   FileCheck,
   Terminal,
-  FileText
+  FileText,
+  Globe2
 } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { DeveloperConsole } from './DeveloperConsole';
@@ -31,7 +31,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCertificates }) => {
 
   const roles = [
     'Software Developer',
-    'Python & AI Developer',
+    'GBOB Specialist',
     'Full-Stack Web Developer',
     'Information Engineering Student'
   ];
@@ -96,16 +96,28 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCertificates }) => {
               {PERSONAL_INFO.name}
             </h1>
 
-            {/* Software Developer title positioned strictly below name */}
-            <p className="text-base sm:text-lg font-bold text-cyan-300 mt-1 tracking-wide">
-              {PERSONAL_INFO.title}
-            </p>
-
-            {/* Specialization Pill */}
-            <div className="mt-2.5 inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-md bg-[#0f1f44] text-cyan-200 border border-blue-700/60 shadow-xs">
-              <Sparkles className="w-3 h-3 text-amber-400" />
-              <span>{PERSONAL_INFO.specialization}</span>
+            {/* Software Developer in upper line, and GBOB Specialist under it in the exact same font */}
+            <div className="mt-1.5 flex flex-col items-center lg:items-start leading-tight">
+              <p className="text-base sm:text-lg font-bold text-cyan-300 tracking-wide">
+                Software Developer
+              </p>
+              <p className="text-base sm:text-lg font-bold text-cyan-300 tracking-wide">
+                GBOB Specialist
+              </p>
             </div>
+
+            {/* Contact link inserted (SuperiorXR Solutions) to explore the business */}
+            <a
+              href={PERSONAL_INFO.businessUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg bg-[#0f1f44] text-cyan-200 border border-cyan-500/50 hover:border-cyan-300 hover:text-white transition-all shadow-md group"
+              title="SuperiorXR Solutions — Explore the Business"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-cyan-400 group-hover:scale-110 transition-transform" />
+              <span>SuperiorXR Solutions — Explore the Business</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-cyan-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
 
             {/* Quick Contact & Details List in Blue */}
             <div className="mt-6 w-full space-y-2.5 text-xs text-blue-100 pt-5 border-t border-blue-900/60 text-left">
@@ -153,7 +165,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCertificates }) => {
               </div>
             </div>
 
-            {/* Social Links in Blue */}
+            {/* Social Links in Blue with secure rel attributes */}
             <div className="mt-5 pt-5 border-t border-blue-900/60 w-full flex items-center justify-center lg:justify-start gap-4">
               <a
                 href={PERSONAL_INFO.github}
@@ -193,7 +205,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCertificates }) => {
               <div className="flex items-center justify-between gap-4 mb-3">
                 <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest px-3 py-1 rounded-full bg-[#0c1836] border border-blue-600/50 shadow-xs">
                   <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
-                  <span className="text-cyan-300 font-bold">IT Student &amp; Software Developer</span>
+                  <span className="text-cyan-300 font-bold">IT Student · Software Developer · GBOB Specialist</span>
                 </div>
 
                 <div className="flex items-center gap-1 bg-[#091228] p-1 rounded-lg border border-blue-800">
@@ -229,9 +241,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCertificates }) => {
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight text-balance">
                 Architecting{' '}
                 <span className="bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-400 bg-clip-text text-transparent">
-                  intelligent software solutions
+                  modern software solutions
                 </span>{' '}
-                with Python, modern web frameworks, and clean code architecture.
+                with clean code architecture, full-stack systems, and strategic GBOB outreach.
               </h2>
 
               {/* Toggle Content: Profile Story vs Interactive Console */}
@@ -243,40 +255,40 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCertificates }) => {
                     animate={{ opacity: 1 }}
                     className="space-y-4 text-blue-100 text-sm sm:text-base leading-relaxed"
                   >
-                    <p>{PERSONAL_INFO.summary}</p>
-                    <p className="text-blue-200/90 text-sm">
-                      Whether developing real-time 3D web visualizations, engineering full-stack e-commerce systems, or implementing Python machine learning scripts, I emphasize code maintainability, clean design patterns, and cross-platform performance.
+                    <p className="text-justify leading-relaxed">{PERSONAL_INFO.summary}</p>
+                    <p className="text-blue-200/90 text-sm text-justify leading-relaxed">
+                      Whether developing the official web presence for SuperiorXR Solutions to explore the business, building full-stack e-commerce systems, creating interactive 3D visualizations, or executing targeted outreach and high-authority guest blogging partnerships, I emphasize disciplined code quality, reliable security, and measurable digital growth.
                     </p>
 
                     {/* 3 Core Focus Pillars */}
                     <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3.5">
                       <div className="p-4 rounded-xl border border-blue-700/60 bg-gradient-to-b from-[#0f1f44] to-[#0c1630] shadow-lg hover:border-cyan-400 hover:-translate-y-1 transition-all duration-200">
                         <div className="w-8 h-8 rounded-lg bg-blue-900/80 text-cyan-300 flex items-center justify-center mb-2.5 border border-blue-600/40">
-                          <Brain className="w-4 h-4" />
+                          <Code2 className="w-4 h-4" />
                         </div>
                         <span className="block text-[11px] font-mono text-cyan-400 uppercase tracking-wider font-bold">
                           Core Focus
                         </span>
                         <span className="block text-sm font-extrabold text-white mt-0.5">
-                          Python &amp; AI Systems
+                          Software Development
                         </span>
                         <span className="block text-xs text-blue-200 mt-1 leading-snug">
-                          Machine Learning, Prompt Engineering &amp; FastAPI
+                          Full-Stack Web, TypeScript, REST APIs &amp; OOP
                         </span>
                       </div>
 
                       <div className="p-4 rounded-xl border border-blue-700/60 bg-gradient-to-b from-[#0f1f44] to-[#0c1630] shadow-lg hover:border-cyan-400 hover:-translate-y-1 transition-all duration-200">
-                        <div className="w-8 h-8 rounded-lg bg-blue-900/80 text-sky-300 flex items-center justify-center mb-2.5 border border-blue-600/40">
-                          <Code2 className="w-4 h-4" />
+                        <div className="w-8 h-8 rounded-lg bg-cyan-950/80 text-cyan-400 flex items-center justify-center mb-2.5 border border-cyan-600/40">
+                          <Globe2 className="w-4 h-4" />
                         </div>
-                        <span className="block text-[11px] font-mono text-sky-400 uppercase tracking-wider font-bold">
-                          Full-Stack Web
+                        <span className="block text-[11px] font-mono text-cyan-400 uppercase tracking-wider font-bold">
+                          Outreach Strategy
                         </span>
                         <span className="block text-sm font-extrabold text-white mt-0.5">
-                          Modern Web &amp; 3D
+                          GBOB Specialist
                         </span>
                         <span className="block text-xs text-blue-200 mt-1 leading-snug">
-                          React, Node.js, TypeScript &amp; Three.js
+                          Guest Blogging, Outreach Business &amp; Authority Growth
                         </span>
                       </div>
 
@@ -285,13 +297,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCertificates }) => {
                           <Server className="w-4 h-4" />
                         </div>
                         <span className="block text-[11px] font-mono text-emerald-400 uppercase tracking-wider font-bold">
-                          Architecture
+                          Business &amp; Systems
                         </span>
                         <span className="block text-sm font-extrabold text-white mt-0.5">
-                          Systems &amp; APIs
+                          SuperiorXR Solutions
                         </span>
                         <span className="block text-xs text-blue-200 mt-1 leading-snug">
-                          RESTful Services, DBs &amp; Clean Code
+                          Explore the Business, Interactive Tech &amp; Security
                         </span>
                       </div>
                     </div>

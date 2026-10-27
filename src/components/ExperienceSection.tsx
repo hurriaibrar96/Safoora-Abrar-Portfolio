@@ -1,21 +1,21 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { FileCheck, ArrowUpRight, Building2, Calendar, ShieldCheck, CheckCircle2, Award, Briefcase } from 'lucide-react';
-import { EXPERIENCES, Experience } from '../data/portfolioData';
+import { Calendar, Building2, Award, FileCheck, CheckCircle2, ArrowUpRight } from 'lucide-react';
+import { Experience, EXPERIENCES } from '../data/portfolioData';
 
 interface ExperienceSectionProps {
-  onOpenDocument?: (doc: { title: string; url: string }) => void;
+  onOpenDocument?: (doc: { title: string; url: string; badge?: string }) => void;
 }
 
 export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenDocument }) => {
   const getExperienceTech = (id: string) => {
     switch (id) {
       case 'nexasecure':
-        return ['Python', 'AI Asset Pipelines', 'Automated Scripting', 'Enterprise Security Protocols', 'Remote Engineering'];
+        return ['Cybersecurity Standards', 'Modular Scripting', 'Code Auditing', 'Remote Engineering'];
       case 'khizex':
-        return ['Full-Stack Development', 'React', 'Node.js', 'REST APIs', 'Code Review Cycles', 'Agile Sprints'];
+        return ['Full-Stack Development', 'React', 'REST APIs', 'UI Components', 'QA & Testing'];
       case 'alkhidmat':
-        return ['Project Coordination', 'Community Service', 'Public Fundraising', 'Event Logistics', 'Team Leadership'];
+        return ['Project Coordination', 'Community Outreach', 'Logistics', 'Leadership'];
       default:
         return [];
     }
@@ -23,8 +23,8 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenDocu
 
   return (
     <section id="experience" className="relative py-16 sm:py-24 border-b border-blue-900/40 tech-grid-pattern overflow-hidden">
-      {/* Background ambient light in blue */}
-      <div className="absolute top-10 right-10 -z-10 w-80 h-80 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
+      {/* Background ambient lighting */}
+      <div className="absolute top-1/3 left-0 -z-10 w-[450px] h-[450px] bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -36,7 +36,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenDocu
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
             Verified Professional Experience
           </h2>
-          <p className="mt-2 text-sm text-blue-200/80 max-w-2xl leading-relaxed">
+          <p className="mt-2 text-sm text-blue-200/80 max-w-2xl leading-relaxed text-justify">
             Practical development internships and volunteer engagements backed by verifiable letters, completion certificates, and recommendation documents.
           </p>
         </div>
@@ -68,10 +68,9 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenDocu
                         </h3>
                         <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-500/50 px-2.5 py-0.5 rounded-full shadow-xs">
                           <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                          <span>Verified Internship</span>
+                          <span>Verified</span>
                         </span>
                       </div>
-
                       <div className="flex items-center gap-2 text-sm font-bold text-cyan-300 mt-1">
                         <Building2 className="w-4 h-4 text-cyan-400" />
                         <span>{exp.company}</span>
@@ -86,9 +85,9 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenDocu
                     </div>
                   </div>
 
-                  {/* Description & Responsibilities */}
+                  {/* Description & Responsibilities with text-justify */}
                   <div className="mt-4">
-                    <p className="text-sm text-blue-100 leading-relaxed font-normal">
+                    <p className="text-sm text-blue-100 leading-relaxed font-normal text-justify">
                       {exp.description}
                     </p>
 
@@ -100,7 +99,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ onOpenDocu
                         {exp.achievements.map((item, i) => (
                           <li key={i} className="flex items-start gap-2">
                             <span className="text-cyan-400 font-bold select-none" aria-hidden="true">&bull;</span>
-                            <span>{item}</span>
+                            <span className="text-justify">{item}</span>
                           </li>
                         ))}
                       </ul>

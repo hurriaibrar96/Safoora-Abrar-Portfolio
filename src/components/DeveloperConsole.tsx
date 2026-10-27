@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Terminal, Code2, Cpu, Copy, Check, Play, CornerDownLeft, Sparkles } from 'lucide-react';
+import { Terminal, Code2, Cpu, Copy, Check, CornerDownLeft, Sparkles } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 export const DeveloperConsole: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'python' | 'terminal' | 'stats'>('python');
+  const [activeTab, setActiveTab] = useState<'spec' | 'terminal' | 'stats'>('spec');
   const [copied, setCopied] = useState(false);
   const [cmdInput, setCmdInput] = useState('');
   const [terminalHistory, setTerminalHistory] = useState<string[]>([
@@ -12,7 +12,7 @@ export const DeveloperConsole: React.FC = () => {
     'Type "help" or click quick commands below:',
   ]);
 
-  const pythonSnippet = `# safoora_spec.py - Information Engineering & AI Architecture
+  const devSnippet = `# safoora_spec.py - Software Development & GBOB Outreach
 from dataclasses import dataclass
 from typing import List
 
@@ -20,29 +20,35 @@ from typing import List
 class SoftwareDeveloper:
     name: str = "${PERSONAL_INFO.name}"
     title: str = "${PERSONAL_INFO.title}"
+    sub_title: str = "${PERSONAL_INFO.subTitle}"
     degree: str = "BS Information Engineering & Technology"
     university: str = "Superior University, Lahore"
     specialization: List[str] = (
-        "Python & AI Development",
+        "Software Development",
+        "GBOB Specialist (Guest Blogging & Outreach)",
         "Full-Stack Web Engineering"
     )
     email: str = "${PERSONAL_INFO.email}"
+    business_platform: str = "${PERSONAL_INFO.businessUrl}"
+    business_entity: str = "SuperiorXR Solutions"
     verified_credentials: int = 6
     
     def deploy_solution(self, requirements: str):
-        """Builds production web and AI architectures."""
+        """Builds production web applications & executes outreach strategy."""
         return {
             "status": "Production-Ready",
-            "stack": ["Python", "FastAPI", "React", "Node.js", "Three.js"],
-            "architecture": "Modular, performant & responsive"
+            "stack": ["React", "TypeScript", "Node.js", "REST APIs", "Tailwind CSS"],
+            "business": "SuperiorXR Solutions (Explore the Business)",
+            "outreach": "GBOB High-Authority Partnerships & Domain Authority Growth",
+            "security": "Audited with Content Security Policy & XSS mitigations"
         }
 
 developer = SoftwareDeveloper()
-print(f"Status: {developer.name} is available for engineering roles.")`;
+print(f"Status: {developer.name} is available for Software Development & GBOB roles.")`;
 
   const handleCopyCode = async () => {
     try {
-      await navigator.clipboard.writeText(pythonSnippet);
+      await navigator.clipboard.writeText(devSnippet);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -58,39 +64,49 @@ print(f"Status: {developer.name} is available for engineering roles.")`;
       case 'help':
         newHistory.push(
           'Available commands:',
-          '  projects    - List production repositories and live links',
-          '  skills      - Inspect Python, AI, and full-stack stack',
+          '  projects    - List live business web platforms and production repositories',
+          '  skills      - Inspect Software Engineering and GBOB Outreach stack',
+          '  business    - Inspect SuperiorXR Solutions details and explore business',
           '  contact     - View primary email and direct channels',
-          '  status      - Display current availability and credentials',
+          '  status      - Display current availability and verified credentials',
           '  clear       - Clear terminal window'
+        );
+        break;
+      case 'business':
+        newHistory.push(
+          '★ Business Platform: SuperiorXR Solutions',
+          `  Explore the Business: ${PERSONAL_INFO.businessUrl}`,
+          '  Focus: Extended-Reality, Spatial Web Technologies, Client Solutions',
+          '  Deployment: Production Vercel Edge Cloud'
         );
         break;
       case 'projects':
         newHistory.push(
-          '• 3D-Model-Showcase (Three.js/WebGL) -> formae-frontend.vercel.app',
-          '• FreshCart (Full-Stack E-Commerce) -> freshcart-store-eight.vercel.app',
-          '• SuperiorXR (Mobile XR APK) -> github.com/hurriaibrar96/SuperiorXR-apk',
-          '• Campus Navigation (Geospatial) -> superior-campus.vercel.app',
-          '• Orbit Habit Tracker (Web App) -> orbit-habit-tracker-six.vercel.app'
+          `• SuperiorXR Solutions (Explore Business) -> ${PERSONAL_INFO.businessUrl}`,
+          '• 3D-Model-Showcase (Three.js/WebGL) -> https://formae-frontend.vercel.app',
+          '• FreshCart (Full-Stack E-Commerce) -> https://freshcart-store-eight.vercel.app',
+          '• Campus Navigation (Geospatial) -> https://superior-campus.vercel.app',
+          '• Orbit Habit Tracker (Web App) -> https://orbit-habit-tracker-six.vercel.app'
         );
         break;
       case 'skills':
         newHistory.push(
-          '[AI/ML] Python, Machine Learning, Prompt Engineering, FastAPI',
-          '[Frontend] React, TypeScript, JavaScript, Tailwind CSS, Three.js',
-          '[Backend & DB] Node.js, Express, MySQL, PostgreSQL, REST APIs'
+          '[Software Dev] React, TypeScript, JavaScript, HTML5/CSS3, Tailwind CSS',
+          '[GBOB Outreach] Guest Blogging, Outreach Business, High-Authority Links, Content Strategy',
+          '[Backend & DB] Node.js, Express, REST APIs, MySQL, PostgreSQL, Git & GitHub'
         );
         break;
       case 'contact':
         newHistory.push(
           `Email: ${PERSONAL_INFO.email}`,
           `Phone: ${PERSONAL_INFO.phone}`,
-          `LinkedIn: ${PERSONAL_INFO.linkedin}`
+          `LinkedIn: ${PERSONAL_INFO.linkedin}`,
+          `Business: ${PERSONAL_INFO.businessUrl}`
         );
         break;
       case 'status':
         newHistory.push(
-          '● Status: AVAILABLE for Software Developer & AI Engineering roles',
+          '● Status: AVAILABLE for Software Developer & GBOB Specialist roles',
           '● 6 Verified Certificates on file (NexaSecure, Khizex, Alkhidmat)',
           '● Expected Graduation: 2027 (Superior University)'
         );
@@ -117,7 +133,7 @@ print(f"Status: {developer.name} is available for engineering roles.")`;
           <span className="w-3 h-3 rounded-full bg-amber-500/90 inline-block"></span>
           <span className="w-3 h-3 rounded-full bg-emerald-500/90 inline-block"></span>
           <span className="ml-2 text-stone-400 text-[11px] font-sans font-medium flex items-center gap-1.5">
-            <Cpu className="w-3.5 h-3.5 text-violet-400" />
+            <Cpu className="w-3.5 h-3.5 text-cyan-400" />
             <span>safoora-core — zsh</span>
           </span>
         </div>
@@ -126,15 +142,15 @@ print(f"Status: {developer.name} is available for engineering roles.")`;
         <div className="flex items-center gap-1 bg-[#18181b] p-1 rounded-lg border border-stone-800">
           <button
             type="button"
-            onClick={() => setActiveTab('python')}
+            onClick={() => setActiveTab('spec')}
             className={`px-2.5 py-1 rounded text-[11px] transition-colors flex items-center gap-1.5 ${
-              activeTab === 'python'
-                ? 'bg-violet-600 text-white font-semibold'
+              activeTab === 'spec'
+                ? 'bg-blue-600 text-white font-semibold'
                 : 'text-stone-400 hover:text-white'
             }`}
           >
-            <Code2 className="w-3 h-3 text-amber-300" />
-            <span>safoora.py</span>
+            <Code2 className="w-3 h-3 text-cyan-300" />
+            <span>developer.py</span>
           </button>
 
           <button
@@ -155,39 +171,28 @@ print(f"Status: {developer.name} is available for engineering roles.")`;
             onClick={() => setActiveTab('stats')}
             className={`px-2.5 py-1 rounded text-[11px] transition-colors flex items-center gap-1.5 ${
               activeTab === 'stats'
-                ? 'bg-blue-600 text-white font-semibold'
+                ? 'bg-cyan-600 text-white font-semibold'
                 : 'text-stone-400 hover:text-white'
             }`}
           >
-            <Sparkles className="w-3 h-3 text-sky-300" />
-            <span>metrics.json</span>
+            <Sparkles className="w-3 h-3 text-amber-300" />
+            <span>metrics</span>
           </button>
         </div>
-
-        {/* Copy button */}
-        <button
-          type="button"
-          onClick={handleCopyCode}
-          className="p-1 text-stone-400 hover:text-white hover:bg-stone-700/50 rounded transition-colors"
-          title="Copy Python Code"
-          aria-label="Copy Python Code"
-        >
-          {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-        </button>
       </div>
 
-      {/* Code / Terminal Content Area */}
+      {/* Main Console Viewport */}
       <div className="p-4 sm:p-5 h-72 sm:h-80 overflow-y-auto leading-relaxed select-text">
         <AnimatePresence mode="wait">
-          {activeTab === 'python' && (
+          {activeTab === 'spec' && (
             <motion.div
-              key="python"
+              key="spec"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="space-y-1 font-mono text-[11.5px] sm:text-xs"
             >
-              <div className="text-stone-500">// Information Engineering &amp; Python AI Spec</div>
+              <div className="text-stone-500">// Information Engineering &amp; Software Architecture Spec</div>
               <div>
                 <span className="text-rose-400 font-bold">from</span> <span className="text-stone-200">dataclasses</span>{' '}
                 <span className="text-rose-400 font-bold">import</span> <span className="text-yellow-300">dataclass</span>
@@ -208,29 +213,33 @@ print(f"Status: {developer.name} is available for engineering roles.")`;
                   <span className="text-emerald-300">"{PERSONAL_INFO.title}"</span>
                 </div>
                 <div>
+                  <span className="text-stone-300">sub_role:</span> <span className="text-blue-300">str</span> ={' '}
+                  <span className="text-cyan-300">"{PERSONAL_INFO.subTitle}"</span>
+                </div>
+                <div>
                   <span className="text-stone-300">university:</span> <span className="text-blue-300">str</span> ={' '}
                   <span className="text-emerald-300">"Superior University, Lahore"</span>
                 </div>
                 <div>
-                  <span className="text-stone-300">degree:</span> <span className="text-blue-300">str</span> ={' '}
-                  <span className="text-emerald-300">"BS Information Engineering &amp; Tech (2023-2027)"</span>
+                  <span className="text-stone-300">business_link:</span> <span className="text-blue-300">str</span> ={' '}
+                  <span className="text-amber-300 underline">"{PERSONAL_INFO.businessUrl}"</span>
                 </div>
                 <div>
                   <span className="text-stone-300">primary_focus:</span> <span className="text-yellow-300">list</span> = [
                 </div>
                 <div className="pl-4 text-emerald-300">
-                  "Python &amp; AI Development",<br />
-                  "Full-Stack Web Engineering",<br />
-                  "Digital Marketing (Interest)"
+                  "Software Development",<br />
+                  "GBOB Specialist (Guest Blogging &amp; Outreach)",<br />
+                  "Full-Stack Web Engineering"
                 </div>
                 <div>]</div>
                 <div>
                   <span className="text-stone-300">email:</span> <span className="text-blue-300">str</span> ={' '}
-                  <span className="text-amber-300 underline">"{PERSONAL_INFO.email}"</span>
+                  <span className="text-cyan-300 underline">"{PERSONAL_INFO.email}"</span>
                 </div>
                 <div>
-                  <span className="text-stone-300">credentials:</span> <span className="text-yellow-300">int</span> ={' '}
-                  <span className="text-violet-400 font-bold">6</span>
+                  <span className="text-stone-300">verified_credentials:</span> <span className="text-yellow-300">int</span> ={' '}
+                  <span className="text-cyan-400 font-bold">6</span>
                 </div>
               </div>
               <div className="pt-2 text-stone-400">
@@ -238,7 +247,7 @@ print(f"Status: {developer.name} is available for engineering roles.")`;
                 <span className="text-yellow-300">get_status</span>():
                 <br />
                 <span className="pl-4 text-rose-400">return</span>{' '}
-                <span className="text-emerald-300">"Ready for Software Development &amp; AI Roles"</span>
+                <span className="text-emerald-300">"Ready for Software Development &amp; GBOB Specialist Roles"</span>
               </div>
             </motion.div>
           )}
@@ -258,10 +267,12 @@ print(f"Status: {developer.name} is available for engineering roles.")`;
                     className={`${
                       line.startsWith('$')
                         ? 'text-yellow-300 font-bold'
-                        : line.startsWith('•')
-                        ? 'text-emerald-400'
+                        : line.startsWith('•') || line.startsWith('★')
+                        ? 'text-cyan-300'
                         : line.startsWith('●')
-                        ? 'text-teal-300 font-semibold'
+                        ? 'text-emerald-400'
+                        : line.startsWith('[')
+                        ? 'text-blue-300'
                         : 'text-stone-300'
                     }`}
                   >
@@ -270,41 +281,30 @@ print(f"Status: {developer.name} is available for engineering roles.")`;
                 ))}
               </div>
 
-              {/* Terminal Quick Pill Buttons */}
-              <div className="pt-3 border-t border-stone-800">
-                <div className="flex flex-wrap items-center gap-1.5 mb-2">
-                  <span className="text-[10px] text-stone-500 uppercase">Run:</span>
-                  {['projects', 'skills', 'contact', 'status', 'clear'].map((cmd) => (
-                    <button
-                      key={cmd}
-                      type="button"
-                      onClick={() => handleRunCommand(cmd)}
-                      className="px-2 py-0.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-300 text-[10px] font-mono transition-colors"
-                    >
-                      {cmd}
-                    </button>
-                  ))}
-                </div>
-
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    if (cmdInput.trim()) handleRunCommand(cmdInput);
+              {/* Terminal command input */}
+              <div className="mt-3 pt-2 border-t border-stone-800 flex items-center gap-2">
+                <span className="text-emerald-400 font-bold select-none">&gt;</span>
+                <input
+                  type="text"
+                  value={cmdInput}
+                  onChange={(e) => setCmdInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && cmdInput.trim()) {
+                      handleRunCommand(cmdInput);
+                    }
                   }}
-                  className="flex items-center gap-2 bg-[#27272a] px-2.5 py-1.5 rounded-lg border border-stone-700"
+                  placeholder="Type 'help', 'business', 'projects', 'skills'..."
+                  className="bg-transparent border-0 text-white placeholder-stone-600 focus:outline-hidden w-full text-xs font-mono"
+                  aria-label="Terminal command prompt"
+                />
+                <button
+                  type="button"
+                  onClick={() => cmdInput.trim() && handleRunCommand(cmdInput)}
+                  className="p-1 text-stone-400 hover:text-white"
+                  title="Execute command"
                 >
-                  <span className="text-emerald-400 font-bold">$</span>
-                  <input
-                    type="text"
-                    value={cmdInput}
-                    onChange={(e) => setCmdInput(e.target.value)}
-                    placeholder="Type command (e.g. projects, skills, contact)..."
-                    className="flex-1 bg-transparent text-white placeholder-stone-500 text-xs focus:outline-hidden font-mono"
-                  />
-                  <button type="submit" className="text-stone-400 hover:text-white" aria-label="Execute command">
-                    <CornerDownLeft className="w-3.5 h-3.5" />
-                  </button>
-                </form>
+                  <CornerDownLeft className="w-3.5 h-3.5" />
+                </button>
               </div>
             </motion.div>
           )}
@@ -315,61 +315,77 @@ print(f"Status: {developer.name} is available for engineering roles.")`;
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="space-y-1 font-mono text-[11.5px] sm:text-xs text-stone-300"
+              className="grid grid-cols-2 gap-3 text-xs"
             >
-              <div>{'{'}</div>
-              <div className="pl-4 space-y-0.5">
-                <div>
-                  <span className="text-blue-300">"candidate"</span>: <span className="text-emerald-300">"{PERSONAL_INFO.name}"</span>,
-                </div>
-                <div>
-                  <span className="text-blue-300">"target_role"</span>: <span className="text-emerald-300">"Software Developer"</span>,
-                </div>
-                <div>
-                  <span className="text-blue-300">"core_specializations"</span>: [
-                  <div className="pl-4 text-emerald-300">
-                    "Python &amp; AI Development",<br />
-                    "Full-Stack Web Architecture"
-                  </div>
-                  ],
-                </div>
-                <div>
-                  <span className="text-blue-300">"academic_status"</span>: <span className="text-emerald-300">"Active BS IET Student @ Superior University"</span>,
-                </div>
-                <div>
-                  <span className="text-blue-300">"total_repositories"</span>: <span className="text-amber-400">5</span>,
-                </div>
-                <div>
-                  <span className="text-blue-300">"verified_credentials"</span>: <span className="text-amber-400">6</span>,
-                </div>
-                <div>
-                  <span className="text-blue-300">"internship_experience"</span>: [
-                  <div className="pl-4 text-emerald-300">
-                    "NexaSecure Tech (Python AI Development Intern)",<br />
-                    "Khizex (Full Stack Intern)"
-                  </div>
-                  ],
-                </div>
-                <div>
-                  <span className="text-blue-300">"open_to_work"</span>: <span className="text-emerald-400 font-bold">true</span>
-                </div>
+              <div className="p-3 rounded-lg bg-stone-900 border border-stone-800">
+                <span className="text-stone-400 block text-[10px] uppercase">Primary Role</span>
+                <span className="text-white font-bold text-sm">Software Developer</span>
+                <span className="text-cyan-400 text-[11px] block mt-1">Full-Stack Web Systems</span>
               </div>
-              <div>{'}'}</div>
+              <div className="p-3 rounded-lg bg-stone-900 border border-stone-800">
+                <span className="text-stone-400 block text-[10px] uppercase">Specialization</span>
+                <span className="text-white font-bold text-sm">GBOB Specialist</span>
+                <span className="text-cyan-400 text-[11px] block mt-1">Guest Blogging &amp; Outreach</span>
+              </div>
+              <div className="p-3 rounded-lg bg-stone-900 border border-stone-800">
+                <span className="text-stone-400 block text-[10px] uppercase">Explore the Business</span>
+                <a
+                  href={PERSONAL_INFO.businessUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cyan-400 font-bold hover:underline block truncate"
+                >
+                  SuperiorXR Solutions
+                </a>
+                <span className="text-emerald-400 text-[11px] block mt-1">Live Vercel Platform</span>
+              </div>
+              <div className="p-3 rounded-lg bg-stone-900 border border-stone-800">
+                <span className="text-stone-400 block text-[10px] uppercase">Verified Credentials</span>
+                <span className="text-white font-bold text-sm">6 Certificates</span>
+                <span className="text-emerald-400 text-[11px] block mt-1">NexaSecure, Khizex, Alkhidmat</span>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
 
-      {/* Footer bar */}
-      <div className="px-4 py-2 bg-[#27272a] border-t border-stone-800 text-[10px] text-stone-400 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>Python 3.12 · React 19 · Vite 8</span>
+      {/* Footer bar with quick buttons & copy action */}
+      <div className="px-4 py-2 bg-[#202024] border-t border-stone-800 flex items-center justify-between text-[11px] text-stone-400">
+        <div className="flex items-center gap-1.5 overflow-x-auto">
+          <span className="text-stone-500 font-semibold hidden sm:inline">Quick commands:</span>
+          {['help', 'business', 'projects', 'skills', 'status'].map((cmd) => (
+            <button
+              key={cmd}
+              type="button"
+              onClick={() => {
+                setActiveTab('terminal');
+                handleRunCommand(cmd);
+              }}
+              className="px-2 py-0.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white transition-colors"
+            >
+              {cmd}
+            </button>
+          ))}
         </div>
-        <div className="flex items-center gap-3">
-          <span>UTF-8</span>
-          <span>git:(main)</span>
-        </div>
+
+        <button
+          type="button"
+          onClick={handleCopyCode}
+          className="flex items-center gap-1 px-2.5 py-1 rounded bg-stone-800 hover:bg-stone-700 text-stone-200 transition-colors shrink-0 ml-2"
+          title="Copy developer specification snippet"
+        >
+          {copied ? (
+            <>
+              <Check className="w-3 h-3 text-emerald-400" />
+              <span className="text-emerald-400">Copied</span>
+            </>
+          ) : (
+            <>
+              <Copy className="w-3 h-3 text-stone-400" />
+              <span>Copy Spec</span>
+            </>
+          )}
+        </button>
       </div>
     </div>
   );
