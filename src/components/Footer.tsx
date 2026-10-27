@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Github, Linkedin, Mail, Sparkles, ShieldCheck } from 'lucide-react';
+import { ArrowUp, Github, Linkedin, Mail, ExternalLink, ShieldCheck } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 export const Footer: React.FC = () => {
@@ -8,82 +8,94 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative border-t border-blue-900/60 bg-gradient-to-b from-[#070c1a] via-[#091226] to-[#050914] text-blue-200 text-xs py-14 overflow-hidden">
-      {/* Top radiant multi-stop blue gradient accent strip */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-400 to-indigo-600 shadow-sm shadow-cyan-400/50" />
-
-      {/* Ambient background glow */}
-      <div className="absolute bottom-0 right-1/4 -z-10 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-
+    <footer className="bg-[#050b18] border-t border-blue-900/60 py-12 text-blue-200 text-xs">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Identity & Subtitle in High-Contrast Blue */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-2">
-            <div className="flex items-center gap-2.5">
-              <span className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-cyan-500 text-stone-950 font-extrabold flex items-center justify-center text-xs shadow-md shadow-cyan-500/20">
-                SA
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-blue-950">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <span className="text-base font-extrabold text-white tracking-tight">
+              {PERSONAL_INFO.name}
+            </span>
+            <div className="mt-0.5 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+              <span className="text-xs font-semibold text-cyan-400">
+                Software Developer
               </span>
-              <span className="font-extrabold text-white text-lg tracking-tight">
-                {PERSONAL_INFO.name}
-              </span>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 pt-0.5">
-              <span className="px-2.5 py-0.5 rounded-full bg-blue-950/80 border border-blue-600/50 text-cyan-300 font-bold text-[11px] shadow-xs">
-                {PERSONAL_INFO.title}
-              </span>
-              <span className="text-blue-400" aria-hidden="true">·</span>
-              <span className="text-xs font-semibold text-blue-200">
-                {PERSONAL_INFO.specialization}
+              <span className="text-blue-600 hidden sm:inline" aria-hidden="true">&bull;</span>
+              <span className="text-xs font-semibold text-cyan-400">
+                GBOB Specialist
               </span>
             </div>
-
-            <p className="text-[11px] text-blue-300/80 pt-1 font-mono">
-              &copy; {new Date().getFullYear()} {PERSONAL_INFO.name}. Built with clean, accessible engineering standards.
-            </p>
+            <span className="text-[11px] text-blue-300/80 mt-1">
+              BS Information Engineering &amp; Technology · Superior University
+            </span>
           </div>
 
-          {/* Social Links & Back to Top in Blue */}
-          <div className="flex items-center gap-4">
+          {/* Quick External Links */}
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-semibold">
+            <a
+              href={PERSONAL_INFO.businessUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-300 hover:text-white transition-colors inline-flex items-center gap-1 font-bold"
+            >
+              <span>SuperiorXR Solutions — Explore the Business</span>
+              <ExternalLink className="w-3 h-3 text-cyan-400" />
+            </a>
+
+            <span className="text-blue-800" aria-hidden="true">&bull;</span>
+
             <a
               href={PERSONAL_INFO.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#0e1a38] border border-blue-800 text-blue-200 hover:text-white hover:border-cyan-400 hover:bg-blue-900/60 transition-all shadow-xs"
+              className="hover:text-white transition-colors inline-flex items-center gap-1"
             >
-              <Github className="w-4 h-4 text-cyan-400" />
-              <span className="font-bold">GitHub</span>
+              <Github className="w-3.5 h-3.5 text-cyan-400" />
+              <span>GitHub</span>
             </a>
+
+            <span className="text-blue-800" aria-hidden="true">&bull;</span>
 
             <a
               href={PERSONAL_INFO.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#0e1a38] border border-blue-800 text-blue-200 hover:text-white hover:border-cyan-400 hover:bg-blue-900/60 transition-all shadow-xs"
+              className="hover:text-white transition-colors inline-flex items-center gap-1"
             >
-              <Linkedin className="w-4 h-4 text-[#38bdf8]" />
-              <span className="font-bold">LinkedIn</span>
+              <Linkedin className="w-3.5 h-3.5 text-sky-400" />
+              <span>LinkedIn</span>
             </a>
+
+            <span className="text-blue-800" aria-hidden="true">&bull;</span>
 
             <a
               href={`https://mail.google.com/mail/?view=cm&fs=1&to=${PERSONAL_INFO.email}&su=Portfolio%20Inquiry`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-bold hover:from-blue-500 hover:to-cyan-500 transition-all shadow-md shadow-blue-500/25"
+              className="hover:text-white transition-colors inline-flex items-center gap-1"
             >
-              <Mail className="w-4 h-4" />
+              <Mail className="w-3.5 h-3.5 text-cyan-400" />
               <span>Email</span>
             </a>
+          </div>
 
-            <button
-              type="button"
-              onClick={scrollToTop}
-              className="p-2.5 rounded-lg bg-[#0e1a38] border border-blue-800 text-cyan-400 hover:text-white hover:border-cyan-400 hover:bg-blue-900 transition-all shadow-xs ml-2"
-              title="Back to top"
-              aria-label="Back to top"
-            >
-              <ArrowUp className="w-4 h-4" />
-            </button>
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="p-2.5 rounded-xl bg-[#0c1836] border border-blue-700/60 text-cyan-300 hover:text-white hover:border-cyan-400 transition-colors shadow-sm flex items-center gap-1.5"
+            aria-label="Scroll back to top"
+          >
+            <ArrowUp className="w-4 h-4" />
+            <span className="font-bold">Top</span>
+          </button>
+        </div>
+
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-blue-300/70 text-center sm:text-left">
+          <p>
+            &copy; {new Date().getFullYear()} {PERSONAL_INFO.name}. Built with React, TypeScript &amp; Tailwind CSS.
+          </p>
+          <div className="flex items-center gap-2 text-cyan-400 font-mono text-[10px]">
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Audited &amp; Hardened for Security</span>
           </div>
         </div>
       </div>

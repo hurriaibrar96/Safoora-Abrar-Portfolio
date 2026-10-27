@@ -53,7 +53,11 @@ export interface SkillCategory {
 export const PERSONAL_INFO = {
   name: "Safoora Abrar",
   title: "Software Developer",
-  specialization: "Python & AI Developer · Digital Marketing",
+  subTitle: "GBOB Specialist",
+  specialization: "Software Developer · GBOB Specialist",
+  businessName: "SuperiorXR Solutions",
+  businessUrl: "https://superiorxr-website-wt7g.vercel.app/",
+  businessTagline: "SuperiorXR Solutions — Explore the Business",
   email: "abrarsafoora161@gmail.com",
   phone: "+92 323 8451912",
   phoneDisplay: "+92 323 8451912",
@@ -62,19 +66,19 @@ export const PERSONAL_INFO = {
   linkedin: "https://www.linkedin.com/in/safoora-abrar-985369396",
   profileImage: "/profile.png",
   availability: "Open to Full-Time & Collaborative Opportunities",
-  summary: `Software Developer and Information Engineering & Technology student specializing in Python & AI Development, Full-Stack Web Architecture, and Digital Marketing. Proven track record delivering production-ready applications spanning interactive web experiences, e-commerce applications, and campus-wide navigation tools. With verified remote AI engineering experience at NexaSecure Tech and full-stack software development at Khizex, I combine disciplined engineering practices with clean architectural design to build performant, user-centric software.`,
+  summary: `Software Developer and Information Engineering & Technology student specializing in Software Development, Full-Stack Web Architecture, and GBOB (Guest Blogging & Outreach). Proven track record delivering production-ready applications spanning business platforms like SuperiorXR Solutions, interactive web experiences, e-commerce systems, and campus navigation tools. Combining disciplined software engineering practices with strategic outreach to architect secure, performant, and user-centric digital solutions.`,
 };
 
 export const CAREER_INTERESTS = [
   {
-    title: "Python & AI Development",
-    description: "Architecting machine learning pipelines, LLM-powered applications, prompt engineering workflows, and automated backend data processing using Python, FastAPI, and modern AI frameworks.",
-    caption: "Machine Learning, LLM Workflows, Prompt Engineering, Python & FastAPI",
-    accentColor: "violet",
-    tagline: "Core Focus · AI Engineering",
-    gradient: "from-violet-500/10 via-purple-500/5 to-transparent",
-    borderHover: "hover:border-violet-400 hover:shadow-violet-100",
-    badge: "bg-violet-950 text-cyan-300 border-blue-600/60"
+    title: "GBOB Specialist (Guest Blogging & Outreach)",
+    description: "Driving strategic outreach business, high-authority publisher partnerships, tailored guest-blogging campaigns, and organic backlink acquisition to elevate online visibility and search authority.",
+    caption: "Guest Blogging, Outreach Strategy, Publisher Relations, Organic Link Acquisition",
+    accentColor: "cyan",
+    tagline: "Core Focus · GBOB Specialist",
+    gradient: "from-cyan-500/10 via-sky-500/5 to-transparent",
+    borderHover: "hover:border-cyan-400 hover:shadow-cyan-100",
+    badge: "bg-cyan-950 text-cyan-300 border-cyan-600/60"
   },
   {
     title: "Full-Stack Software Engineering",
@@ -87,14 +91,14 @@ export const CAREER_INTERESTS = [
     badge: "bg-blue-950 text-cyan-300 border-blue-600/60"
   },
   {
-    title: "Digital Marketing",
-    description: "Strong career interest in modern digital marketing, web traffic growth, content marketing, and generative engine optimization (GEO) to optimize reach and audience engagement.",
-    caption: "Web Traffic, Content Marketing, GEO (Generative Engine Optimization), Analytics",
-    accentColor: "cyan",
-    tagline: "Career Interest · Digital Marketing",
-    gradient: "from-cyan-500/10 via-sky-500/5 to-transparent",
-    borderHover: "hover:border-cyan-400 hover:shadow-cyan-100",
-    badge: "bg-indigo-950 text-cyan-300 border-indigo-600/60"
+    title: "Business Platforms & Web Solutions",
+    description: "Developing scalable digital platforms, modern web applications, and interactive web tools engineered with fast loading speeds, intuitive user journeys, and robust deployment pipelines like SuperiorXR Solutions.",
+    caption: "Business Web Platforms, Interactive UX, Vercel Deployment, Scalable Architecture",
+    accentColor: "violet",
+    tagline: "Business Focus · SuperiorXR Solutions",
+    gradient: "from-violet-500/10 via-purple-500/5 to-transparent",
+    borderHover: "hover:border-violet-400 hover:shadow-violet-100",
+    badge: "bg-violet-950 text-cyan-300 border-blue-600/60"
   }
 ];
 
@@ -103,7 +107,7 @@ export const PROJECTS: Project[] = [
     id: "3d-model-showcase",
     title: "3D Model Showcase",
     type: "Interactive Web Experience",
-    category: "ai",
+    category: "web",
     description: "An interactive web experience engineered for real-time 3D model visualization and user-driven asset inspection.",
     longDescription: "Engineered to deliver high-performance 3D rendering within standard web browsers. Features orbital camera manipulation, responsive lighting controls, and optimized mesh delivery designed for fluid spatial interactions.",
     repoUrl: "https://github.com/hurriaibrar96/3D-Model-Showcase",
@@ -121,6 +125,29 @@ export const PROJECTS: Project[] = [
     tagColorClass: "hover:text-cyan-300",
     borderHoverClass: "hover:border-cyan-400",
     gradientClass: "from-violet-500/20 via-purple-500/10 to-transparent"
+  },
+  {
+    id: "superior-xr",
+    title: "SuperiorXR Solutions",
+    type: "Business Platform & XR Solutions",
+    category: "web",
+    description: "Official web platform for SuperiorXR Solutions, connecting clients and partners to explore the business, extended-reality solutions, and interactive spatial technologies.",
+    longDescription: "Official business website for SuperiorXR Solutions. Explore the business, interactive spatial technologies, modern web-based extended-reality presentation, and companion solutions.",
+    repoUrl: "https://github.com/hurriaibrar96/SuperiorXR-apk",
+    liveUrl: "https://superiorxr-website-wt7g.vercel.app/",
+    technologies: ["SuperiorXR Solutions", "Business Platform", "React", "Spatial UI", "Vercel"],
+    highlights: [
+      "Official business website: superiorxr-website-wt7g.vercel.app",
+      "Explore the business, interactive services, and spatial solutions",
+      "High-performance responsive design with secure edge hosting",
+      "Direct client contact channels and open-source foundation"
+    ],
+    featured: true,
+    accentColor: "cyan",
+    badgeClass: "bg-cyan-950 text-cyan-300 border border-cyan-500/40",
+    tagColorClass: "hover:text-cyan-300",
+    borderHoverClass: "hover:border-cyan-400",
+    gradientClass: "from-cyan-500/20 via-sky-500/10 to-transparent"
   },
   {
     id: "freshcart",
@@ -144,28 +171,6 @@ export const PROJECTS: Project[] = [
     tagColorClass: "hover:text-emerald-300",
     borderHoverClass: "hover:border-emerald-400",
     gradientClass: "from-emerald-500/20 via-teal-500/10 to-transparent"
-  },
-  {
-    id: "superior-xr",
-    title: "SuperiorXR",
-    type: "Mobile & XR Development",
-    category: "mobile",
-    description: "An extended-reality (XR) mobile application created for immersive spatial visualization and practical usability.",
-    longDescription: "Developed as a mobile application to explore practical XR implementation on handheld devices. Emphasizes intuitive spatial anchoring, touch-to-manipulate interactions, and lightweight APK packaging for fast loading.",
-    repoUrl: "https://github.com/hurriaibrar96/SuperiorXR-apk",
-    technologies: ["Mobile Dev", "Android APK", "XR SDK", "Spatial UI", "C# / Flutter"],
-    highlights: [
-      "Lightweight standalone Android APK build",
-      "Spatial scene tracking and interactive model anchors",
-      "Optimized battery and thermal footprint on handheld devices",
-      "Comprehensive repository documentation for reproduction"
-    ],
-    featured: true,
-    accentColor: "cyan",
-    badgeClass: "bg-cyan-950 text-cyan-300 border border-cyan-500/40",
-    tagColorClass: "hover:text-cyan-300",
-    borderHoverClass: "hover:border-cyan-400",
-    gradientClass: "from-cyan-500/20 via-sky-500/10 to-transparent"
   },
   {
     id: "campus-navigation",
@@ -218,16 +223,16 @@ export const PROJECTS: Project[] = [
 export const EXPERIENCES: Experience[] = [
   {
     id: "nexasecure",
-    role: "Python AI Development Intern",
+    role: "Technical Engineering Intern",
     company: "NexaSecure Tech",
     location: "Remote",
     period: "June 16, 2026 – July 16, 2026",
-    accentColor: "violet",
-    description: "Contributed to internal AI asset development, algorithmic workflows, and digital tools while strictly adhering to enterprise cybersecurity protocols.",
+    accentColor: "cyan",
+    description: "Contributed to software engineering workflows, internal digital utilities, and algorithmic pipelines while strictly adhering to enterprise cybersecurity protocols.",
     achievements: [
-      "Developed Python scripts for automated data handling and AI tool integration",
+      "Developed modular scripts for automated data handling and software tool integration",
       "Followed strict cybersecurity compliance standards across digital asset repositories",
-      "Collaborated remotely with engineering leads to validate model accuracy and performance"
+      "Collaborated remotely with engineering leads to validate codebase security and performance"
     ],
     documents: [
       {
@@ -302,8 +307,8 @@ export const EDUCATION_LIST: Education[] = [
     degree: "Bachelor of Information Engineering & Technology",
     institution: "Superior University, Lahore",
     period: "2023 – 2027",
-    details: "Core focus: Software Engineering, Data Structures, Algorithms, AI Systems, Web & Database Engineering.",
-    accentColor: "violet"
+    details: "Core focus: Software Engineering, Data Structures, Algorithms, Web Engineering, and Database Systems.",
+    accentColor: "cyan"
   },
   {
     id: "fsc-pre-eng",
@@ -325,25 +330,32 @@ export const EDUCATION_LIST: Education[] = [
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    title: "AI & Python Engineering",
-    description: "Core algorithms, machine learning workflows, prompt engineering, and modern generative AI tools.",
-    skills: ["Python", "Machine Learning", "Deep Learning", "Prompt Engineering", "FastAPI", "Data Analysis"],
-    accentColor: "violet",
-    iconName: "ai"
+    title: "Software Engineering & Architecture",
+    description: "System design patterns, object-oriented programming, clean code, and API architecture.",
+    skills: ["Object-Oriented Design", "Data Structures", "Algorithms", "RESTful Architecture", "Software Testing", "Agile & Git"],
+    accentColor: "cyan",
+    iconName: "architecture"
   },
   {
     title: "Frontend Engineering",
     description: "Accessible, high-performance interfaces built for modern responsive web browsers.",
-    skills: ["React", "JavaScript (ES6+)", "TypeScript", "HTML5 & CSS3", "Tailwind CSS", "Bootstrap", "Flutter"],
+    skills: ["React", "JavaScript (ES6+)", "TypeScript", "HTML5 & CSS3", "Tailwind CSS", "Bootstrap"],
     accentColor: "blue",
     iconName: "frontend"
   },
   {
     title: "Backend & Systems",
     description: "Scalable server architectures, RESTful API design, and web backend runtimes.",
-    skills: ["Node.js", "Express", "Django", "FastAPI", "REST APIs", "JSON Architecture"],
+    skills: ["Node.js", "Express", "REST APIs", "JSON Architecture", "Python Basics"],
     accentColor: "amber",
     iconName: "backend"
+  },
+  {
+    title: "GBOB & Digital Outreach",
+    description: "Strategic outreach campaigns, high-authority publisher communications, and organic link building.",
+    skills: ["Guest Blogging", "Outreach Business", "Prospecting", "Content Collaboration", "Domain Authority Analysis", "Email Outreach"],
+    accentColor: "violet",
+    iconName: "ai"
   },
   {
     title: "Databases & DevOps Tools",
@@ -351,12 +363,5 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     skills: ["MySQL", "PostgreSQL", "Git & GitHub", "Vercel", "Postman", "Linux Basics"],
     accentColor: "teal",
     iconName: "database"
-  },
-  {
-    title: "Software Engineering & Architecture",
-    description: "System design patterns, object-oriented programming, clean code, and API architecture.",
-    skills: ["Object-Oriented Design", "Data Structures", "Algorithms", "RESTful Architecture", "Software Testing", "Agile & Git"],
-    accentColor: "emerald",
-    iconName: "architecture"
   }
 ];
